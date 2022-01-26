@@ -1,16 +1,16 @@
 function GetCloud() {
     //服务器获取md文件地址
-    return "./GetArt.do?ArtName=";
+    return "../GetMd?ArtName=";
 }
 
 function GetSub() {
     //服务器提交md地址
-    return "./SaveArt.do";
+    return "../SaveArt";
 }
 
 function GetDel() {
     //服务器删除md地址
-    return "./DelArt.do";
+    return "../DelArt";
 }
 
 function GetArt() {
@@ -19,9 +19,9 @@ function GetArt() {
 }
 
 function GetType() {
-    return "./GetType.do";
+    return "../GetType";
 }
 
 function GetAddCom() {
-    return "./AddCom.do";
+    return "../AddCom";
 }

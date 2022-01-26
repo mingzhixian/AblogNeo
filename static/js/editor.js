@@ -156,13 +156,13 @@ function DayAndNight() {
         color[8] = "#2a2a2a";
 
         //博客图标
-        document.getElementById("AblogImg").src = "resource/img/Ablog-night.svg";
+        document.getElementById("AblogImg").src = "../img/Ablog-night.svg";
 
         //网页设置图标
-        document.getElementById("SetImg").src = "resource/img/set-night.svg";
+        document.getElementById("SetImg").src = "../img/set-night.svg";
 
         select.setAttribute('alt', 'day');
-        NewUrl = "resource/css/github-markdown-night.css";
+        NewUrl = "../css/github-markdown-night.css";
     } else if (select.getAttribute("alt") == "day") {
         //网页背景颜色
         color[0] = "#f2f8f2";
@@ -184,13 +184,13 @@ function DayAndNight() {
         color[8] = "#f2f9f1";
 
         //博客图标
-        document.getElementById("AblogImg").src = "resource/img/Ablog-day.svg";
+        document.getElementById("AblogImg").src = "../img/Ablog-day.svg";
 
         //网页设置图标
-        document.getElementById("SetImg").src = "resource/img/set-day.svg";
+        document.getElementById("SetImg").src = "../img/set-day.svg";
 
         select.setAttribute('alt', 'night');
-        NewUrl = "resource/css/github-markdown-day.css";
+        NewUrl = "../css/github-markdown-day.css";
     }
 
     var link = document.createElement("link");
