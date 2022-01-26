@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AblogNeo</title>
+    <link rel="shortcut icon" href="../img/blogger.svg">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/editor.css">
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script src="../js/showdown.js"></script>
+    <script src="../js/get.js"></script>
+    <script src="../js/editor.js"></script>
+    <style>
+        body {
+            background-color: #f2f8f2;
+        }
+
+        #article-ti p,
+        #article-sh p,
+        #article-md p {
+            color: #313131;
+        }
+
+        #article,
+        #showdown,
+        #title,
+        #type {
+            background-color: #ecf3ee;
+            color: #3a3b3c;
+            border-color: #696969;
+        }
+
+        #sub,
+        #del {
+            background-color: #719596;
+            color: #16181a;
+        }
+
+        .bottom {
+            color: black;
+        }
+
+        #typeSelect {
+            background-color: #f2f9f1;
+            color: #16181a;
+        }
+    </style>
+    <link rel="stylesheet" href="../css/github-markdown-day.css">
+</head>
+
+<body>
+<div class="head">
+    <img id="AblogImg" src="../img/Ablog-day.svg" alt="Ablog">
+    <img id="SetImg" src="../img/set-day.svg" onclick="DayAndNight()" alt="night">
+    <div class="FloatEnd"></div>
+</div>
+<div class="Body">
+    <div id="article-ti">
+        <p>题目：</p>
+        <textarea id="title" placeholder="标题"></textarea>
+
+        <p>类型：</p>
+        <textarea id="type" placeholder="类型"></textarea>
+        <select id="typeSelect" onChange="typeSelect()"></select>
+
+        <div id="sub" onclick="sub()">提交</div>
+        <div id="del" onclick="del()">删除</div>
+        <div class="FloatEnd"></div>
+    </div>
+    <div id="article-md">
+        <p>编写：</p>
+        <textarea id="article" placeholder="输入markdown格式文本"></textarea>
+        <!--编写-->
+    </div>
+    <div id="article-sh">
+        <p>预览：</p>
+        <div id="showdown" class="markdown-body"></div>
+        <!--预览-->
+    </div>
+    <div class="FloatEnd"></div>
+</div>
+<div class="Bottom">
+    <p>Ablog</p>
+    <p>鸣之弦与LJ的博客</p>
+</div>
+</body>
+
+</html>
