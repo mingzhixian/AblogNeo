@@ -17,7 +17,7 @@ var d = flag.String("d", "./AblogNeoData", "文章等数据存放地址")
 var p = flag.int("p", "8080", "服务器监听端口号")
 
 //启动http服务器
-func start(*p int) {
+func start(p *int) {
 	//启动服务
 	err := http.ListenAndServe(":"+strconv.Itoa(*p), nil)
 	if err != nil {
