@@ -1,37 +1,47 @@
 package main
 
 import (
-"log"
-"fmt"
-"net/http"
-"./services/Test"
-"./services/GetMd"
-"./services/SaveMd"
+	"flag"
+	"fmt"
+	"log"
+	"net/http"
+	"strconv"
+
+	"./services/AppSet"
+	"./services/GetMd"
+	"./services/SaveMd"
 )
 
+//命令行参数
+var d = flag.String("d", "./AblogNeoData", "文章等数据存放地址")
+var p = flag.int("p", "8080", "服务器监听端口号")
+
 //启动http服务器
-func start() {
-    err := http.ListenAndServe(":8080", nil)
-    if err != nil {
-        log.Fatal("ListenAndServe: ", err)
-    }
+func start(*p int) {
+	//启动服务
+	err := http.ListenAndServe(":"+strconv.Itoa(*p), nil)
+	if err != nil {
+		log.Fatal(err)
+	}
+	//打印信息
+	fmt.Println("服务已启动，监听" + strconv.Itoa(*p) + "端口")
 }
 
 //主函数
 func main() {
+	//解析命令行参数
+	flag.Parse()
+	//设置数据库地址
+	AppSet.SetDataPath(*d)
+	fmt.Println(*d)
 	//设置监听
-	staticHandle :=http.FileServer(http.Dir("./static"))
+	staticHandle := http.FileServer(http.Dir("./static"))
 	http.Handle("/js/", staticHandle)
 	http.Handle("/css/", staticHandle)
 	http.Handle("/html/", staticHandle)
 	http.Handle("/img/", staticHandle)
-	http.HandleFunc("/Test", Test.Test)
 	http.HandleFunc("/GetMd", GetMd.GetMd)
 	http.HandleFunc("/SaveMd", SaveMd.SaveMd)
-
-	//打印信息
-	fmt.Println("服务已启动，监听8080端口")
-
 	//启动http服务器，开始监听
-	start();
+	start(*p)
 }
