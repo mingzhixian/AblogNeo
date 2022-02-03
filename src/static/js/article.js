@@ -1,66 +1,7 @@
-var converter = new showdown.Converter({tables: true});
-var ArtUrl = null;
-var ComUrl = null;
-var Broswse = null;
-var Article = null;
-//服务器后台地址
-const CloudUrl = GetCloud();
-
-//从链接获取文章名
-function getvl(key) {
-    var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
-    var result = window.location.search.substr(1).match(reg);
-    return result ? decodeURIComponent(result[2]) : null;
-}
-
-//初始化获取Url
-function getUrl() {
-    var tilte = getvl("article");
-    if (tilte == null) {
-        tilte = "欢迎来到LJ与鸣之弦的博客";
-    }
-    ArtUrl = CloudUrl + tilte + "&Url=ArtUrl";
-    ComUrl = CloudUrl + tilte + "&Url=ComUrl";
-    Broswse = "./GetView?ArtName=" + tilte;
-    document.getElementById("Title").innerHTML = tilte;
-}
-
 //获取文章与评论
 window.onload = function () {
     MoreDevices();
-    getUrl();
-    $.ajax({
-        url: ArtUrl,
-        type: "get",
-        dataType: "html"
-    }).done(function (output) {
-        ShowDown(output, "article", 1);
-    }).fail(function (xhr, status) {
-        console.log(status);
-    });
-    if (getvl("article") == null || getvl("article") === "欢迎来到LJ与鸣之弦的博客") {
-        document.getElementById("comment").style.display = "none";
-    } else {
-        $.ajax({
-            url: ComUrl,
-            type: "get",
-            dataType: "html"
-        }).done(function (output) {
-            ShowDown(output, "Com", 0);
-        }).fail(function (xhr, status) {
-            console.log(status);
-        });
-    }
-    //浏览次数
-    $.ajax({
-        url: Broswse,
-        type: "get",
-        dataType: "json"
-    }).done(function (output) {
-        document.getElementById("Browse").innerHTML = "浏览次数：" + output.Browse;
-    }).fail(function (xhr, status) {
-        console.log(status);
-    });
+    directory();
 }
 
 //适应小屏
@@ -81,15 +22,6 @@ function MoreDevices() {
     }
 }
 
-//解析md文件并展示
-function ShowDown(output, dom, IsDir) {
-    var Dom = document.getElementById(dom);
-    Dom.innerHTML = converter.makeHtml(output);
-    if (IsDir === 1) {
-        directory();
-        Article = Dom.innerHTML;
-    }
-}
 
 //自动生成目录
 function directory() {
@@ -111,14 +43,14 @@ function GoTo(link) {
     $("html,body").animate({scrollTop: $(link).offset().top}, 400);
 }
 
-//添加评论
+//添加评论--待完成
 function AddCom() {
     var Comtext = document.getElementById("ComText").value;
     if (BadCom(Comtext)) {
         alert("包含违规评论！");
     } else {
         $.ajax({
-            url: GetAddCom(),
+            url: "./SaveCom",
             type: "post",
             data: {"ArtName": getvl("article"), "ComText": Comtext},
             dataType: "json"
@@ -180,12 +112,7 @@ function DayAndNight() {
         //评论输入框背景颜色
         color[10] = "#2a2827";
 
-        //博客图标
-        document.getElementById("AblogImg").src = "../img/Ablog-night.svg";
-
-        //网页设置图标
-        document.getElementById("SetImg").src = "../img/set-night.svg";
-
+        $('#SetImg').css({"width":"42px","rotate":"90deg"})
         select.setAttribute('alt', 'day');
         NewUrl = "../css/github-markdown-night.css";
 
@@ -213,12 +140,7 @@ function DayAndNight() {
         //评论输入框背景颜色
         color[10] = "#fcfffe";
 
-        //博客图标
-        document.getElementById("AblogImg").src = "../img/Ablog-day.svg";
-
-        //网页设置图标
-        document.getElementById("SetImg").src = "../img/set-day.svg";
-
+        $('#SetImg').css({"width":"42px","rotate":"-90deg"})
         select.setAttribute('alt', 'night');
         NewUrl = "../css/github-markdown-day.css";
     }

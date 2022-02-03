@@ -3,13 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>AblogNeo</title>
+    <title>{{.BlogName}}</title>
     <link rel="shortcut icon" href="../img/blogger.svg">
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/article.css">
     <script src="../js/jquery-3.6.0.min.js"></script>
-    <script src="../js/showdown.js"></script>
-    <script src="../js/get.js"></script>
     <script src="../js/article.js"></script>
     <style>
         body {
@@ -54,22 +52,19 @@
 
 <body>
 <div class="head">
-    <img id="AblogImg" src="../img/Ablog-day.svg" alt="Ablog">
-    <img id="SetImg" src="../img/set-day.svg" onclick="DayAndNight()" alt="night">
+    <p>{{.BlogName}}</p>
+    <img id="SetImg" src="../img/DayAndNight.svg" onclick="DayAndNight()" alt="night">
     <div class="FloatEnd"></div>
 </div>
 <div class="Body">
     <div id="Title">
-        <!--标题-->
-    </div>
-    <div id="Browse">
-        <!--浏览次数-->
+        <!--标题-->{{.ArtName}}
     </div>
     <div id="directory">
         <!--目录-->
     </div>
     <div id="article" class="markdown-body">
-        <!--文章-->
+        <!--文章-->{{.ArtBody}}
     </div>
     <div id="comment" class="markdown-body">
         <div id="AddCom">
@@ -78,13 +73,12 @@
             <div class="FloatEnd"></div>
         </div>
         <div id="Com"></div>
-        <!--评论-->
+        <!--评论-->{{.ArtCom}}
     </div>
     <div class="FloatEnd"></div>
 </div>
 <div class="Bottom">
-    <p>Ablog</p>
-    <p>鸣之弦与LJ的博客</p>
+    <p>{{.BlogName}}</p>
 </div>
 </body>
 
