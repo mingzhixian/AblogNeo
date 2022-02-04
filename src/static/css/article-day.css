@@ -1,0 +1,14 @@
+#ArtName{
+	margin: 0 auto;
+    font-size: 7rem;
+    text-align: center;
+}
+#ArtBody{
+	margin: 4% auto 0 auto;
+}
+#ArtCom{
+	margin: 2% auto 0 auto;
+}
+#SideBarBody{
+	background-color: #f7f8f7;
+}

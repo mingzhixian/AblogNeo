@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"text/template"
+	"time"
 
 	blackfriday "github.com/russross/blackfriday/v2"
 
@@ -15,6 +16,7 @@ import (
 //go:embed article.html
 var article string
 
+//获取文章
 func GetArt(response http.ResponseWriter, request *http.Request) {
 	//获取文章名
 	request.ParseForm()
@@ -45,9 +47,20 @@ func templateHtml(artHtml string, artName string, response http.ResponseWriter) 
 	html := template.New("article")
 	html.Parse(article)
 	data := map[string]string{
-		"BlogName": AppSet.GetBlogName(),
-		"ArtName":  artName,
-		"ArtBody":  artHtml,
+		"BlogName":    AppSet.GetBlogName(),
+		"ArtName":     artName,
+		"ArtBody":     artHtml,
+		"DayAndNight": dayAndNight(),
 	}
 	html.Execute(response, data)
+}
+
+//设置网页主题
+func dayAndNight() string {
+	hour := time.Now().Hour()
+	if hour > 18 || hour < 8 {
+		return "<link rel=\"stylesheet\" href=\"../css/article-night.css\"><link rel=\"stylesheet\" href=\"../css/github-markdown-night.css\">"
+	} else {
+		return "<link rel=\"stylesheet\" href=\"../css/article-day.css\"><link rel=\"stylesheet\" href=\"../css/github-markdown-day.css\">"
+	}
 }

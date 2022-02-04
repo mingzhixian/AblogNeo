@@ -8,49 +8,66 @@
     font-family: AblogFont;
     src: url("../font/font.subset.woff2");
 }
-
+html{
+    font-size:62.5%;
+    transition: filter 800ms;
+}
 body {
     font-family: AblogFont, serif;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 .FloatEnd {
     clear: both;
 }
 
-.head {
-    height: 65px;
+.Head {
+    z-index: 99999;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: white;
+    box-shadow: 0px 8px 8px #dcdcdc;
 }
 
-#AblogImg {
-    height: 43px;
-    float: left;
-    margin-left: 30px;
-    margin-top: 11px;
-}
-
-#SetImg {
-    width: 37px;
+#BlogName {
+    margin:8px 12px 8px 0;
+    font-size: 2rem;
     float: right;
-    margin-right: 30px;
-    margin-top: 14px;
-}   
+}  
+
+#SideBar{
+    margin:8px 0 8px 12px;
+    font-size: 2rem;
+    float: left;
+}
+
+#SideBarBody{
+    position:absolute;
+    width:70%;
+    font-size: 1.4rem;
+    left:-70%;
+    top: auto;
+    margin-top: -8px;
+    transition:left 700ms;
+    z-index: 99999;
+    position: fixed;
+    padding: 12px 6px 12px 8px;
+    height: 100%;
+}
+
+#SideBarBody p{
+    line-height:2.4rem;
+}
 
 .Body {
-    width: 1100px;
-    margin: 26px auto 50px auto;
-    position: relative;
+    width: 90%;
+    margin: 60px auto 30px auto;
 }
 
 .Bottom {
-    margin-bottom: 30px;
     text-align: center;
-    font-size: 18px;
-}
-
-.ignore {
-    display: none;
-}
-
-pre {
-    transition: background-color 700ms;
+    font-size: 1rem;
+    margin:30px auto 50px auto;
 }

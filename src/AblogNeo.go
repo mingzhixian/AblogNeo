@@ -13,7 +13,7 @@ import (
 //命令行参数
 var d = flag.String("d", "./AblogNeoData", "文章等数据存放地址")
 var p = flag.Int("p", 8080, "服务器监听端口号")
-var n = flag.String("n", "Ablog", "博客名字")
+var n = flag.String("n", "AblogNeo", "博客名字")
 
 //启动http服务器
 func start(p *int) {
@@ -42,6 +42,7 @@ func main() {
 	http.Handle("/js/", staticHandle)
 	http.Handle("/css/", staticHandle)
 	http.Handle("/img/", staticHandle)
+	http.Handle("/font/", staticHandle)
 	http.HandleFunc("/", GetArt.GetArt)
 	http.HandleFunc("/GetArt", GetArt.GetArt)
 	http.HandleFunc("/SaveArt", SaveArt.SaveArt)

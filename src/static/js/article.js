@@ -1,34 +1,31 @@
+var blur = 0;
 //获取文章与评论
 window.onload = function () {
-    MoreDevices();
     directory();
 }
 
-//适应小屏
-function MoreDevices() {
-    var width = document.body.clientWidth;
-    if (width < 1100) {
-        document.getElementsByClassName("Body")[0].style.width = "100%";
-        document.getElementById("directory").style.float = "none";
-        document.getElementById("article").style.float = "none";
-        document.getElementById("comment").style.float = "none";
-        document.getElementById("directory").style.margin = "0 auto 40px auto";
-        document.getElementById("article").style.margin = "0 auto";
-        document.getElementById("comment").style.margin = "40px auto 0 auto";
-        document.getElementById("directory").style.width = "90%";
-        document.getElementById("article").style.width = "90%";
-        document.getElementById("comment").style.width = "90%";
-        document.getElementById("directory").style.position = "static";
-    }
+function SideBar() {
+    $('.Body').css({ "filter": "blur(4px)" });
+    $('#SideBarBody').css({"left":"0%"});
+    blur = 1;
 }
 
+$(document).ready(function () {
+    $('.Body').click(function () {
+        if (blur == 1) {
+            $('.Body').css({ "filter": "none" });
+            $('#SideBarBody').css({"left":"-70%"});
+            blur = 0;
+        }
+    });
+});
 
 //自动生成目录
 function directory() {
-    $("#article").find("h1,h2,h3,h4,h5,h6").each(function (i, item) {
+    $("#ArtBody").find("h1,h2,h3,h4,h5,h6").each(function (i, item) {
         var tag = $(item).get(0).localName;
         $(item).attr("id", "p" + i);
-        $("#directory").append('<p><a class = "title-' + tag + ' anchor-link" onclick="GoTo(\'#p' + i + '\')" >' + $(this).text() + '</a></p>');
+        $("#ArtDir").append('<p><a class = "title-' + tag + ' anchor-link" onclick="GoTo(\'#p' + i + '\')" >' + $(this).text() + '</a></p>');
     });
     $(".title-h1").css("margin-left", 0);
     $(".title-h2").css("margin-left", 10);
@@ -40,7 +37,7 @@ function directory() {
 
 //点击目录滚动到对应位置
 function GoTo(link) {
-    $("html,body").animate({scrollTop: $(link).offset().top}, 400);
+    $("html,body").animate({ scrollTop: $(link).offset().top }, 400);
 }
 
 //添加评论--待完成
@@ -52,7 +49,7 @@ function AddCom() {
         $.ajax({
             url: "./SaveCom",
             type: "post",
-            data: {"ArtName": getvl("article"), "ComText": Comtext},
+            data: { "ArtName": getvl("article"), "ComText": Comtext },
             dataType: "json"
         }).done(function () {
             $.ajax({
@@ -80,84 +77,4 @@ function BadCom(ComText) {
         }
     }
     return false;
-}
-
-//黑白主题切换
-function DayAndNight() {
-    var select = document.getElementById("SetImg");
-    var head = document.getElementsByTagName("head")[0];
-    var color = [];
-    var NewUrl = null;
-    if (select.getAttribute("alt") === "night") {
-        //网页背景颜色
-        color[0] = "#262622";
-        //文章标题、浏览次数字体颜色
-        color[1] = "darkgray";
-        //文章、评论、目录栏背景颜色
-        color[2] = "#22211f";
-        //文章、评论栏字体颜色
-        color[3] = "#e4d6bd";
-        //文章、评论、目录栏边框颜色
-        color[4] = "#494843";
-        //目录字体颜色
-        color[5] = "darkgray";
-        //目录字体选中颜色
-        color[6] = "cadetblue";
-        //底部声明颜色
-        color[7] = "#bbbbbb";
-        //提交按钮背景颜色
-        color[8] = "#496f70";
-        //提交按钮字体颜色
-        color[9] = "aliceblue";
-        //评论输入框背景颜色
-        color[10] = "#2a2827";
-
-        $('#SetImg').css({"width":"42px","rotate":"90deg"})
-        select.setAttribute('alt', 'day');
-        NewUrl = "../css/github-markdown-night.css";
-
-    } else if (select.getAttribute("alt") === "day") {
-        //网页背景颜色
-        color[0] = "#f2f8f2";
-        //文章标题颜色
-        color[1] = "#313131";
-        //文章、评论、目录栏背景颜色
-        color[2] = "#ecf3ee";
-        //文章、评论栏字体颜色
-        color[3] = "#3a3b3c";
-        //文章、评论、目录栏边框颜色
-        color[4] = "#696969";
-        //目录字体颜色
-        color[5] = "#16181a";
-        //目录字体选中颜色
-        color[6] = "cadetblue";
-        //底部声明颜色
-        color[7] = "black";
-        //提交按钮背景颜色
-        color[8] = "#719596";
-        //提交按钮字体颜色
-        color[9] = "#16181a";
-        //评论输入框背景颜色
-        color[10] = "#fcfffe";
-
-        $('#SetImg').css({"width":"42px","rotate":"-90deg"})
-        select.setAttribute('alt', 'night');
-        NewUrl = "../css/github-markdown-day.css";
-    }
-
-    var link = document.createElement("link");
-    link.rel = "stylesheet";
-    link.type = "text/css";
-    link.href = NewUrl;
-    head.removeChild(head.lastChild);
-    head.appendChild(link);
-
-    $('body').css({"background-color": color[0]});
-    $('#article,#comment,#directory').css({"background-color": color[2], "color": color[3], "border-color": color[4]});
-    $('#ComText').css({"background-color": color[10]});
-    $('#Title,#Browse').css({"color": color[1]});
-    $('#directory a').css({"color": color[5]});
-    $('#directory a:hover').css({"color": color[6]});
-    $('.Bottom').css({"color": color[7]});
-    $('#ComSub').css({"color": color[9], "background-color": color[8]});
 }
