@@ -1,17 +1,15 @@
 # AblogNeo
 ---------- 一个简单高效的博客网站，专注于分享
 ## 特色
-- 使用markdown编辑，书写更流畅
+- 基于markdown
 - 无用户机制，专注于分享
 - 极简风格，更高效的阅读体验
 - 匿名评论，垃圾评论过滤，专注于问题
-- 支持夜间模式，呵护夜间努力的你
-- 文章浏览次数统计（待完成）
-- 多平台支持（待完成）
-- 下载备份所有文章以及恢复备份（待完成）
+- 根据时间自动显示夜间与白天主题
+- 多平台支持
 ## 部署
 1. 下载软件<br/>
-从[下载页面下载软件](https://github.com/mingzhixian/AblogNeo/releases)
+从[下载页面下载软件](https://github.com/mingzhixian/AblogNeo/releases)<br/>
 2 赋予运行权限
 ```shell
 sudo chmod +x ./AblogNeo
