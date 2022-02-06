@@ -1,14 +1,24 @@
+#Head{
+	background-color: white;
+    box-shadow: 0px 8px 8px #dcdcdc;
+}
+#BlogName a{
+	color:black;
+}
 #ArtName{
-	margin: 0 auto;
-    font-size: 7rem;
+	margin: 70px auto 0 auto;
+    font-size: 5rem;
     text-align: center;
 }
 #ArtBody{
-	margin: 4% auto 0 auto;
+	margin: 50px auto 0 auto;
 }
 #ArtCom{
 	margin: 2% auto 0 auto;
 }
 #SideBarBody{
-	background-color: #f7f8f7;
+	background-color: #ecececc4;
+}
+#SideBarBody p:hover{
+	color: #4d9a8d;
 }

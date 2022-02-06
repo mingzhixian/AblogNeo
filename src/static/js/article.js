@@ -1,21 +1,36 @@
 var blur = 0;
+var SideBarWidth = 70;
 //获取文章与评论
 window.onload = function () {
     directory();
+    MoreDevices();
+}
+
+function MoreDevices() {
+    if (document.body.clientWidth > 1000) {
+        SideBarWidth = 30;
+        $('#SideBarBody').css({ "left": "-" + SideBarWidth + "%", "width": SideBarWidth + "%" });
+        $('#ArtName').css({"font-size":"9rem"});
+    }
 }
 
 function SideBar() {
-    $('.Body').css({ "filter": "blur(4px)" });
-    $('#SideBarBody').css({"left":"0%"});
-    blur = 1;
+    if (blur == 0) {
+        $('.Body').css({ "filter": "blur(4px)" });
+        $('#SideBarBody').css({ "left": "0%" });
+        blur = 1;
+    }
+    else {
+        $('.Body').css({ "filter": "none" });
+        $('#SideBarBody').css({ "left": "-" + SideBarWidth + "%" });
+        blur = 0;
+    }
 }
 
 $(document).ready(function () {
     $('.Body').click(function () {
         if (blur == 1) {
-            $('.Body').css({ "filter": "none" });
-            $('#SideBarBody').css({"left":"-70%"});
-            blur = 0;
+            SideBar();
         }
     });
 });
@@ -23,16 +38,14 @@ $(document).ready(function () {
 //自动生成目录
 function directory() {
     $("#ArtBody").find("h1,h2,h3,h4,h5,h6").each(function (i, item) {
-        var tag = $(item).get(0).localName;
+        var tag = $(item).get(0).tagName.substring(1);
+        var prefix = "";
+        for (let i = 0; i < parseInt(tag); i++) {
+            prefix += "---";
+        }
         $(item).attr("id", "p" + i);
-        $("#ArtDir").append('<p><a class = "title-' + tag + ' anchor-link" onclick="GoTo(\'#p' + i + '\')" >' + $(this).text() + '</a></p>');
+        $("#ArtDir").append('|<p onclick="GoTo(\'#p' + i + '\')">' + prefix + $(this).text() + '</p>');
     });
-    $(".title-h1").css("margin-left", 0);
-    $(".title-h2").css("margin-left", 10);
-    $(".title-h3").css("margin-left", 20);
-    $(".title-h4").css("margin-left", 30);
-    $(".title-h5").css("margin-left", 40);
-    $(".title-h6").css("margin-left", 50);
 }
 
 //点击目录滚动到对应位置

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{{.BlogName}}</title>
+    <link rel="shortcut icon" href="../img/blogger.svg">
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script src="../js/editor.js"></script>
+</head>
+
+<body>
+    <div class="head">
+        <img id="AblogImg" src="../img/Ablog-day.svg" alt="Ablog">
+        <img id="SetImg" src="../img/set-day.svg" onclick="DayAndNight()" alt="night">
+        <div class="FloatEnd"></div>
+    </div>
+    <div class="Body">
+        <div id="article-ti">
+            <p>题目：</p>
+            <textarea id="title" placeholder="标题"></textarea>
+
+            <p>类型：</p>
+            <textarea id="type" placeholder="类型"></textarea>
+            <select id="typeSelect" onChange="typeSelect()"></select>
+
+            <div id="sub" onclick="sub()">提交</div>
+            <div id="del" onclick="del()">删除</div>
+            <div class="FloatEnd"></div>
+        </div>
+        <div id="article-md">
+            <p>编写：</p>
+            <textarea id="article" placeholder="输入markdown格式文本"></textarea>
+            <!--编写-->
+        </div>
+        <div id="article-sh">
+            <p>预览：</p>
+            <div id="showdown" class="markdown-body"></div>
+            <!--预览-->
+        </div>
+        <div class="FloatEnd"></div>
+    </div>
+    <div class="Bottom">
+        <p>{{.BlogName}}</p>
+    </div>
+</body>
+
+</html>

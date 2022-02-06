@@ -3,6 +3,7 @@ package main
 import (
 	"AblogNeo/src/AppSet"
 	"AblogNeo/src/GetArt"
+	"AblogNeo/src/Html"
 	"AblogNeo/src/SaveArt"
 	"flag"
 	"fmt"
@@ -46,6 +47,7 @@ func main() {
 	http.HandleFunc("/", GetArt.GetArt)
 	http.HandleFunc("/GetArt", GetArt.GetArt)
 	http.HandleFunc("/SaveArt", SaveArt.SaveArt)
+	http.HandleFunc("/Html", Html.Html)
 	//启动http服务器，开始监听
 	start(p)
 }

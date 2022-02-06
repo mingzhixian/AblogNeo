@@ -1,0 +1,9 @@
+#BlogName a{
+	color:darkgray;
+}
+#SideBarBody{
+	background-color: #212020e0;
+}
+#SideBarBody p:hover{
+	color: #3f635d;
+}
