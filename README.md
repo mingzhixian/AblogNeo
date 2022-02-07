@@ -19,4 +19,4 @@ sudo chmod +x ./AblogNeo
 ./AblogNeo -d {文章数据地址-默认当前文件夹} -p {监听端口-默认8080} -n {博客网站名字-默认AblogNeo} 
 #例如： ./AblogNeo -d ./AblogNeoData -p 8080 -n AblogNeo
 ```
-4. 上传文章地址：ip/Html?Get=push
+4. 上传文章地址：ip:8080/Html?Get=push
