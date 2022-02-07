@@ -10,7 +10,7 @@
 ## 部署
 1. 下载软件<br/>
 从[下载页面下载软件](https://github.com/mingzhixian/AblogNeo/releases)<br/>
-2 赋予运行权限
+2. 赋予运行权限
 ```shell
 sudo chmod +x ./AblogNeo
 ```
