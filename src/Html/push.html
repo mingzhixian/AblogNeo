@@ -4,9 +4,12 @@
 <head>
 	<meta charset="UTF-8">
 	<title>{{.BlogName}}</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="shortcut icon" href="../img/blogger.svg">
 	<link rel="stylesheet" href="../css/main.css">
 	<script src="../js/jquery-3.6.0.min.js"></script>
+	<script src="../js/push.js"></script>
+	<script src="../js/BadKeys.js"></script>
 	{{.DayAndNight}}
 </head>
 
@@ -22,13 +25,13 @@
 		<div class="FloatEnd"></div>
 	</div>
 	<div class="Body">
-		<form id="Blog">
-			
-		</form>
+		<div id="upload">
+			<input id="fileInput" type="file" multiple onchange="handleFiles(this.files)">点击这里上传文件
+		</div>
 	</div>
 	<div class="Bottom">
-        <p>{{.BlogName}}</p>
-    </div>
+		<p>{{.BlogName}}</p>
+	</div>
 </body>
 
 </html>

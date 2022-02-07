@@ -56,7 +56,7 @@ function GoTo(link) {
 //添加评论--待完成
 function AddCom() {
     var Comtext = document.getElementById("ComText").value;
-    if (BadCom(Comtext)) {
+    if (BadKey(Comtext)) {
         alert("包含违规评论！");
     } else {
         $.ajax({
@@ -79,15 +79,4 @@ function AddCom() {
             console.log(status);
         });
     }
-}
-
-//垃圾评论检测,包含违规词语则返回true
-function BadCom(ComText) {
-    var BadKey = ["傻逼", "混蛋", "傻缺", "傻B", "傻b", "呆子", "操你妈", "艹", "滚蛋", "滚你妈的"];
-    for (key in BadKey) {
-        if (ComText.indexOf(BadKey[key]) > -1) {
-            return true;
-        }
-    }
-    return false;
 }

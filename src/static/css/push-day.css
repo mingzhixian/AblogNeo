@@ -1,0 +1,43 @@
+.Head{
+	background-color: white;
+    box-shadow: 0px 8px 8px #dcdcdc;
+}
+#SideBarBody,#SideBar,.Bottom,#BlogName a{
+	color: black;
+}
+#SideBarBody{
+	background-color: #ecececc4;
+}
+#SideBarBody p:hover{
+	color: #4d9a8d;
+}
+#upload {
+	display: block;
+	height:25rem;
+	line-height:25rem;
+	width: 80%;
+	margin:10rem auto 0 auto;
+	text-align: center;
+    position: relative;
+    color: #888;
+    background: #fafafa;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+	font-size: 3rem;
+}
+
+#upload  input {
+    position: absolute;
+    right: 0;
+    top: 0;
+	bottom: 0;
+	left: 0;
+    opacity: 0;
+}
+
+#upload:hover {
+    color: #444;
+    background: #eee;
+    border-color: #ccc;
+    text-decoration: none
+}
