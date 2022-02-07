@@ -22,7 +22,9 @@ func scanFiles(FilePath string) []string {
 		log.Fatal(err)
 	}
 	for _, f := range files {
-		names = append(names, f.Name())
+		if f.Name() != AppSet.GetBlogName()+".md" {
+			names = append(names, f.Name())
+		}
 	}
 	return names
 }

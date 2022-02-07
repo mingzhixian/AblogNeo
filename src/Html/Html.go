@@ -59,8 +59,8 @@ func templateHtml(Get string, response http.ResponseWriter) {
 func dayAndNight(Get string) string {
 	hour := time.Now().Hour()
 	if hour > 18 || hour < 8 {
-		return "<link rel=\"stylesheet\" href=\"../css/" + Get + "-night.css\"><link rel=\"stylesheet\" href=\"../css/github-markdown-night.css\">"
+		return "<link rel=\"stylesheet\" href=\"./static/css/" + Get + "-night.css\"><link rel=\"stylesheet\" href=\"./static/css/github-markdown-night.css\">"
 	} else {
-		return "<link rel=\"stylesheet\" href=\"../css/" + Get + "-day.css\"><link rel=\"stylesheet\" href=\"../css/github-markdown-day.css\">"
+		return "<link rel=\"stylesheet\" href=\"./static/css/" + Get + "-day.css\"><link rel=\"stylesheet\" href=\"./static/css/github-markdown-day.css\">"
 	}
 }

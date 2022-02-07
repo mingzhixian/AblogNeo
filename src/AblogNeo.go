@@ -5,11 +5,15 @@ import (
 	"AblogNeo/src/GetArt"
 	"AblogNeo/src/Html"
 	"AblogNeo/src/SaveArt"
+	"embed"
 	"flag"
 	"fmt"
 	"net/http"
 	"strconv"
 )
+
+//go:embed static
+var static embed.FS
 
 //命令行参数
 var d = flag.String("d", "./AblogNeoData", "文章等数据存放地址")
@@ -39,11 +43,11 @@ func main() {
 	fmt.Println("监听端口：" + strconv.Itoa(*p))
 	fmt.Println("启动服务...")
 	//设置监听
-	staticHandle := http.FileServer(http.Dir("./src/static"))
-	http.Handle("/js/", staticHandle)
-	http.Handle("/css/", staticHandle)
-	http.Handle("/img/", staticHandle)
-	http.Handle("/font/", staticHandle)
+	staticHandle := http.FileServer(http.FS(static))
+	http.Handle("/static/js/", staticHandle)
+	http.Handle("/static/css/", staticHandle)
+	http.Handle("/static/img/", staticHandle)
+	http.Handle("/static/font/", staticHandle)
 	http.HandleFunc("/", GetArt.GetArt)
 	http.HandleFunc("/GetArt", GetArt.GetArt)
 	http.HandleFunc("/SaveArt", SaveArt.SaveArt)
