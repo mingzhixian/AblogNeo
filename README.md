@@ -17,4 +17,5 @@ sudo chmod +x ./AblogNeo
 3. 运行程序
 ```shell
 ./AblogNeo -d {文章数据地址-默认当前文件夹} -p {监听端口-默认8080} -n {博客网站名字-默认AblogNeo} 
+#例如： ./AblogNeo -d ./AblogNeoData -p 8080 -n AblogNeo
 ```
