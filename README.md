@@ -7,6 +7,7 @@
 - 匿名评论，垃圾评论过滤，专注于问题
 - 根据时间自动显示夜间与白天主题
 - 多平台支持
+- 支持自定义，可引用外部静态文件
 ## 部署
 1. 下载软件<br/>
 从[下载页面下载软件](https://github.com/mingzhixian/AblogNeo/releases)<br/>
@@ -16,7 +17,8 @@ sudo chmod +x ./AblogNeo
 ```
 3. 运行程序
 ```shell
-./AblogNeo -d {文章数据地址-默认当前文件夹} -p {监听端口-默认8080} -n {博客网站名字-默认AblogNeo} 
-#例如： ./AblogNeo -d ./AblogNeoData -p 8080 -n AblogNeo
+./AblogNeo
+#也可以执行./AblogNeo -d {文章数据地址-默认当前文件夹} -p {监听端口-默认8080} -n {博客网站名字-默认AblogNeo} -s{引入外部静态文件，外部文件须在程序相同目录下} 
+#例如： ./AblogNeo -d ./AblogNeoData -p 8080 -n AblogNeo -s
 ```
 4. 上传文章地址：ip:8080/Html?Get=push

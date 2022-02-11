@@ -4,45 +4,42 @@
 <head>
     <meta charset="UTF-8">
     <title>{{.BlogName}}</title>
-    <link rel="shortcut icon" href="./static/img/blogger.svg">
-    <link rel="stylesheet" href="./static/css/main.css">
-    <script src="./static/js/jquery-3.6.0.min.js"></script>
-    <script src="./static/js/editor.js"></script>
+    <link rel="shortcut icon" href="../static/img/blogger.svg">
+    <link rel="stylesheet" href="../static/css/main.css">
+    <script src="../static/js/jquery-3.6.0.min.js"></script>
+    <script src="../static/js/editor.js"></script>
+    <link rel="stylesheet" href="../static/css/editor-night.css">
+    <!-- <link rel="stylesheet" href="../static/css/github-markdown-night.css"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vditor/dist/index.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vditor/dist/index.min.js"></script>
 </head>
 
 <body>
-    <div class="head">
-        <img id="AblogImg" src="./static/img/Ablog-day.svg" alt="Ablog">
-        <img id="SetImg" src="./static/img/set-day.svg" onclick="DayAndNight()" alt="night">
+    <!-- 侧边栏 -->
+    <div id="SideBarBody">
+        <div id="ArtDir">
+        </div>
+    </div>
+    <div class="Head">
+        <div id="SideBar" onclick="SideBar()">目录</div>
+        <div id="BlogName"><a href="./">AblogNeo</a></div>
         <div class="FloatEnd"></div>
     </div>
     <div class="Body">
-        <div id="article-ti">
-            <p>题目：</p>
-            <textarea id="title" placeholder="标题"></textarea>
-
-            <p>类型：</p>
-            <textarea id="type" placeholder="类型"></textarea>
-            <select id="typeSelect" onChange="typeSelect()"></select>
-
-            <div id="sub" onclick="sub()">提交</div>
-            <div id="del" onclick="del()">删除</div>
-            <div class="FloatEnd"></div>
+        <div id="ArtBody" class="markdown-body" contenteditable="true">
+            <h1 id="p0">测试</h1>
+            <ul>
+                <li><a href="./article.html?article=测试">测试</a>(最后更新日期：2022-01-24)</li>
+                <li><a href="./article.html?article=你好">你好</a>(最后更新日期：2022-02-04)</li>
+            </ul>
+            <h1 id="p1">介绍</h1>
+            <ul>
+                <li><a href="./article.html?article=ReadMe">ReadMe</a>(最后更新日期：2022-01-26)</li>
+            </ul>
         </div>
-        <div id="article-md">
-            <p>编写：</p>
-            <textarea id="article" placeholder="输入markdown格式文本"></textarea>
-            <!--编写-->
-        </div>
-        <div id="article-sh">
-            <p>预览：</p>
-            <div id="showdown" class="markdown-body"></div>
-            <!--预览-->
-        </div>
-        <div class="FloatEnd"></div>
     </div>
     <div class="Bottom">
-        <p>{{.BlogName}}</p>
+        <p>AblogNeo</p>
     </div>
 </body>
 

@@ -19,9 +19,25 @@ var static embed.FS
 var d = flag.String("d", "./AblogNeoData", "文章等数据存放地址")
 var p = flag.Int("p", 8080, "服务器监听端口号")
 var n = flag.String("n", "AblogNeo", "博客名字")
+var s = flag.Bool("s", false, "启用外部样式文件")
 
 //启动http服务器
-func start(p *int) {
+func start(p *int, s *bool) {
+	//设置监听
+	var staticHandle http.Handler
+	if *s {
+		staticHandle = http.FileServer(http.Dir("./"))
+	} else {
+		staticHandle = http.FileServer(http.FS(static))
+	}
+	http.Handle("/static/js/", staticHandle)
+	http.Handle("/static/css/", staticHandle)
+	http.Handle("/static/img/", staticHandle)
+	http.Handle("/static/font/", staticHandle)
+	http.HandleFunc("/", GetArt.GetArt)
+	http.HandleFunc("/GetArt", GetArt.GetArt)
+	http.HandleFunc("/SaveArt", SaveArt.SaveArt)
+	http.HandleFunc("/Html", Html.Html)
 	//启动服务
 	err := http.ListenAndServe(":"+strconv.Itoa(*p), nil)
 	if err != nil {
@@ -41,17 +57,10 @@ func main() {
 	fmt.Println("博客名字：" + *n)
 	fmt.Println("数据地址：" + *d)
 	fmt.Println("监听端口：" + strconv.Itoa(*p))
+	if *s {
+		fmt.Println("已启用外部样式文件")
+	}
 	fmt.Println("启动服务...")
-	//设置监听
-	staticHandle := http.FileServer(http.FS(static))
-	http.Handle("/static/js/", staticHandle)
-	http.Handle("/static/css/", staticHandle)
-	http.Handle("/static/img/", staticHandle)
-	http.Handle("/static/font/", staticHandle)
-	http.HandleFunc("/", GetArt.GetArt)
-	http.HandleFunc("/GetArt", GetArt.GetArt)
-	http.HandleFunc("/SaveArt", SaveArt.SaveArt)
-	http.HandleFunc("/Html", Html.Html)
 	//启动http服务器，开始监听
-	start(p)
+	start(p, s)
 }

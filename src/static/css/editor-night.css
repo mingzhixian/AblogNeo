@@ -1,9 +1,16 @@
-#BlogName a{
-	color:darkgray;
+html{
+	background-color:#22211f;
+}
+.Head{
+	background-color: #22211f;
+    box-shadow: 0px 8px 8px #1f1f1f;
 }
 #SideBarBody{
 	background-color: #212020e0;
 }
 #SideBarBody p:hover{
 	color: #3f635d;
+}
+#SideBarBody,#SideBar,.Bottom,#BlogName a{
+	color: darkgray;
 }

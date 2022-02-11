@@ -58,7 +58,7 @@ func templateHtml(artHtml string, artName string, response http.ResponseWriter) 
 //设置网页主题
 func dayAndNight() string {
 	hour := time.Now().Hour()
-	if hour > 18 || hour < 8 {
+	if hour >= 18 || hour <= 8 {
 		return "<link rel=\"stylesheet\" href=\"./static/css/article-night.css\"><link rel=\"stylesheet\" href=\"./static/css/github-markdown-night.css\">"
 	} else {
 		return "<link rel=\"stylesheet\" href=\"./static/css/article-day.css\"><link rel=\"stylesheet\" href=\"./static/css/github-markdown-day.css\">"
