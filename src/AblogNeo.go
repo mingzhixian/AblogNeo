@@ -26,6 +26,7 @@ func start(p *int) {
 	err := http.ListenAndServe(":"+strconv.Itoa(*p), nil)
 	if err != nil {
 		fmt.Println("服务启动失败：" + err.Error())
+		fmt.Println("sss")
 	}
 }
 
